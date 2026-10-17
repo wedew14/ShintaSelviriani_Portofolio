@@ -1,35 +1,23 @@
 /* EXPERIENCE SECTION */
-.dark {
-  background: var(--green);
-  color: white
-}
-
-.light {
-  color: #c8d3cd !important
-}
-
-.dark .section-head h2 {
-  color: white
-}
-
-.dark .section-head p {
-  color: #aebeb7
+#experience {
+  background: var(--cream);
 }
 
 .timeline {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 55px
+  gap: 55px;
 }
 
 .timeline-title {
   font-size: 10px;
   letter-spacing: .18em;
   text-transform: uppercase;
-  color: #9eb0a8;
-  border-bottom: 1px solid rgba(255, 255, 255, .15);
+  color: var(--green2);
+  font-weight: 700;
+  border-bottom: 1px solid rgba(16, 46, 39, .15);
   padding-bottom: 14px;
-  margin-bottom: 0
+  margin-bottom: 0;
 }
 
 .timeline-item {
@@ -37,37 +25,38 @@
   grid-template-columns: 105px 1fr;
   gap: 18px;
   padding: 24px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, .1);
-  transition: background .2s ease
+  border-bottom: 1px solid rgba(16, 46, 39, .12);
+  transition: background .2s ease;
 }
 
 .timeline-item .date {
-  font-size: 9px;
-  color: #91a49b;
+  font-size: 10px;
+  color: #65756d;
+  font-weight: 600;
   text-transform: uppercase;
-  line-height: 1.5
+  line-height: 1.5;
 }
 
 .timeline-item h3 {
   font: 500 20px "Playfair Display", serif;
-  margin-bottom: 2px
+  color: var(--green);
+  margin-bottom: 2px;
 }
 
 .timeline-item b {
   font-size: 11px;
-  color: #c5d2cc
+  color: var(--green2);
 }
 
 .timeline-item p {
-  font-size: 11px;
-  color: #94a69e;
+  font-size: 12px;
+  color: #556860;
   margin-top: 8px;
-  line-height: 1.6
+  line-height: 1.6;
 }
 
 .timeline-item.highlight {
-  border-left: 2px solid var(--gold);
-  padding-left: 16px
+  padding-left: 16px;
 }
 
 .experience-note,
@@ -76,14 +65,14 @@
   gap: 14px;
   align-items: flex-start;
   margin-top: 28px;
-  color: #95a79f;
-  font-size: 11px
+  color: #5f6e67;
+  font-size: 12px;
 }
 
 .experience-note span,
 .cert-note span {
   font-size: 18px;
-  color: var(--gold)
+  color: var(--gold);
 }
 
 /* EXPERIENCE SUPPORTING PHOTOS / FOTO PENDUKUNG */
@@ -91,7 +80,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 14px
+  margin-top: 14px;
 }
 
 .exp-photo-card {
@@ -100,16 +89,17 @@
   height: 78px;
   border-radius: 8px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, .2);
-  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(16, 46, 39, .15);
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(16, 46, 39, .06);
   cursor: pointer;
-  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
 
 .exp-photo-card:hover {
   transform: translateY(-3px) scale(1.03);
   border-color: var(--gold);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, .35)
+  box-shadow: 0 10px 24px rgba(16, 46, 39, .18);
 }
 
 .exp-photo-card img {
@@ -140,4 +130,3 @@
   text-overflow: ellipsis;
   letter-spacing: .02em
 }
-

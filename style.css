@@ -67,9 +67,9 @@ a {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(251, 250, 246, .88);
+  background: rgba(12, 35, 28, .92);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(216, 216, 206, .65);
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
   transition: box-shadow .3s ease
 }
 
@@ -84,7 +84,7 @@ a {
   font-family: "Playfair Display", serif;
   font-size: 28px;
   font-weight: 700;
-  color: var(--green)
+  color: #ffffff
 }
 
 .brand span {
@@ -95,7 +95,7 @@ a {
   display: flex;
   gap: 28px;
   font-size: 13px;
-  color: #52635c
+  color: #a9bdb4
 }
 
 .nav-links a {
@@ -103,21 +103,21 @@ a {
 }
 
 .nav-links a:hover {
-  color: var(--green)
+  color: var(--gold-light)
 }
 
 .nav-cta {
-  border: 1px solid var(--green);
+  border: 1px solid rgba(255, 255, 255, .2);
   border-radius: 999px;
   padding: 9px 16px;
   font-size: 12px;
-  color: var(--green);
+  color: #cbd7d0;
   transition: all .25s ease
 }
 
 .nav-cta:hover {
-  background: var(--green);
-  color: white
+  background: var(--gold);
+  color: #0c231c
 }
 
 .nav-cta span {
@@ -544,37 +544,25 @@ h2 em {
 /* FILE: src/css/05-experience.css */
 /* ==================================================== */
 /* EXPERIENCE SECTION */
-.dark {
-  background: var(--green);
-  color: white
-}
-
-.light {
-  color: #c8d3cd !important
-}
-
-.dark .section-head h2 {
-  color: white
-}
-
-.dark .section-head p {
-  color: #aebeb7
+#experience {
+  background: var(--cream);
 }
 
 .timeline {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 55px
+  gap: 55px;
 }
 
 .timeline-title {
   font-size: 10px;
   letter-spacing: .18em;
   text-transform: uppercase;
-  color: #9eb0a8;
-  border-bottom: 1px solid rgba(255, 255, 255, .15);
+  color: var(--green2);
+  font-weight: 700;
+  border-bottom: 1px solid rgba(16, 46, 39, .15);
   padding-bottom: 14px;
-  margin-bottom: 0
+  margin-bottom: 0;
 }
 
 .timeline-item {
@@ -582,37 +570,38 @@ h2 em {
   grid-template-columns: 105px 1fr;
   gap: 18px;
   padding: 24px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, .1);
-  transition: background .2s ease
+  border-bottom: 1px solid rgba(16, 46, 39, .12);
+  transition: background .2s ease;
 }
 
 .timeline-item .date {
-  font-size: 9px;
-  color: #91a49b;
+  font-size: 10px;
+  color: #65756d;
+  font-weight: 600;
   text-transform: uppercase;
-  line-height: 1.5
+  line-height: 1.5;
 }
 
 .timeline-item h3 {
   font: 500 20px "Playfair Display", serif;
-  margin-bottom: 2px
+  color: var(--green);
+  margin-bottom: 2px;
 }
 
 .timeline-item b {
   font-size: 11px;
-  color: #c5d2cc
+  color: var(--green2);
 }
 
 .timeline-item p {
-  font-size: 11px;
-  color: #94a69e;
+  font-size: 12px;
+  color: #556860;
   margin-top: 8px;
-  line-height: 1.6
+  line-height: 1.6;
 }
 
 .timeline-item.highlight {
-  border-left: 2px solid var(--gold);
-  padding-left: 16px
+  padding-left: 16px;
 }
 
 .experience-note,
@@ -621,14 +610,14 @@ h2 em {
   gap: 14px;
   align-items: flex-start;
   margin-top: 28px;
-  color: #95a79f;
-  font-size: 11px
+  color: #5f6e67;
+  font-size: 12px;
 }
 
 .experience-note span,
 .cert-note span {
   font-size: 18px;
-  color: var(--gold)
+  color: var(--gold);
 }
 
 /* EXPERIENCE SUPPORTING PHOTOS / FOTO PENDUKUNG */
@@ -636,7 +625,7 @@ h2 em {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 14px
+  margin-top: 14px;
 }
 
 .exp-photo-card {
@@ -645,16 +634,17 @@ h2 em {
   height: 78px;
   border-radius: 8px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, .2);
-  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(16, 46, 39, .15);
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(16, 46, 39, .06);
   cursor: pointer;
-  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
 
 .exp-photo-card:hover {
   transform: translateY(-3px) scale(1.03);
   border-color: var(--gold);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, .35)
+  box-shadow: 0 10px 24px rgba(16, 46, 39, .18);
 }
 
 .exp-photo-card img {
@@ -685,8 +675,6 @@ h2 em {
   text-overflow: ellipsis;
   letter-spacing: .02em
 }
-
-
 
 /* ==================================================== */
 /* FILE: src/css/06-gallery.css */
@@ -1642,23 +1630,23 @@ h2 em {
 /* 07 / CERTIFICATES & LICENSES SECTION */
 /* ==================================================== */
 .certificates-section {
-  background: var(--green);
-  color: white;
+  background: var(--cream);
+  color: #1a2f28;
   padding: 105px 0;
   position: relative;
   overflow: hidden;
 }
 
 .certificates-section .section-label {
-  color: #afbfba;
+  color: #5a7a6c;
 }
 
 .certificates-section .section-head h2 {
-  color: white;
+  color: #1a2f28;
 }
 
 .certificates-section .section-head p {
-  color: #a9bbb3;
+  color: #5e7d6f;
 }
 
 .cert-grid {
@@ -1669,8 +1657,8 @@ h2 em {
 }
 
 .cert-card {
-  background: rgba(255, 255, 255, .05);
-  border: 1px solid rgba(255, 255, 255, .15);
+  background: rgba(28, 60, 48, .04);
+  border: 1px solid rgba(28, 60, 48, .12);
   border-radius: 18px;
   overflow: hidden;
   display: flex;
@@ -1683,14 +1671,14 @@ h2 em {
 .cert-card:hover {
   transform: translateY(-7px);
   border-color: var(--gold);
-  background: rgba(255, 255, 255, .085);
-  box-shadow: 0 22px 50px rgba(0, 0, 0, .35);
+  background: rgba(28, 60, 48, .08);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, .1);
 }
 
 .cert-img-wrap {
   position: relative;
   aspect-ratio: 16/11;
-  background: #102e27;
+  background: #e8e6e0;
   overflow: hidden;
 }
 
@@ -1756,13 +1744,13 @@ h2 em {
   font-size: 20px;
   font-weight: 600;
   line-height: 1.25;
-  color: white;
+  color: #1a2f28;
   margin-bottom: 8px;
 }
 
 .cert-desc {
   font-size: 12px;
-  color: #a5bcb2;
+  color: #5e7d6f;
   line-height: 1.6;
   flex-grow: 1;
 }
@@ -1770,7 +1758,7 @@ h2 em {
 .cert-footer {
   margin-top: 16px;
   padding-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, .1);
+  border-top: 1px solid rgba(28, 60, 48, .1);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1778,14 +1766,14 @@ h2 em {
 
 .cert-id {
   font-size: 10px;
-  color: #82998f;
+  color: #5a7a6c;
   font-family: monospace;
 }
 
 .cert-cta {
   font-size: 11px;
   font-weight: 700;
-  color: var(--gold-light);
+  color: var(--green);
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -1794,8 +1782,100 @@ h2 em {
 
 .cert-card:hover .cert-cta {
   transform: translateX(4px);
-  color: white;
+  color: #1a2f28;
 }
+
+/* ==================================================== */
+/* CERTIFICATES PAGINATION */
+/* ==================================================== */
+.cert-pagination-wrap {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.cert-pagination-info {
+  font-size: 13px;
+  color: #5a7a6c;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: .02em;
+}
+
+.cert-pagination-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cert-page-btn {
+  min-width: 42px;
+  height: 42px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1px solid rgba(28, 60, 48, .15);
+  background: rgba(28, 60, 48, .04);
+  color: #1a2f28;
+  cursor: pointer;
+  transition: all .25s ease;
+  backdrop-filter: blur(8px);
+}
+
+.cert-page-btn:hover:not(:disabled) {
+  border-color: var(--gold);
+  background: rgba(28, 60, 48, .08);
+  color: var(--green);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 46, 39, .08);
+}
+
+.cert-page-btn.active {
+  background: var(--green);
+  color: var(--gold-light);
+  border-color: var(--green);
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(16, 46, 39, .2);
+  transform: translateY(-2px);
+}
+
+.cert-page-btn:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+  pointer-events: none;
+  border-color: rgba(28, 60, 48, .08);
+}
+
+.cert-page-nav {
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+
+/* Card fade in animation on page switch */
+.cert-card.cert-fade-in {
+  animation: certCardFadeIn .4s cubic-bezier(.2, .8, .2, 1) forwards;
+}
+
+@keyframes certCardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 
 
