@@ -188,7 +188,116 @@ if (copyEmailBtn) {
   });
 }
 
+// 6. Certificates Pagination (Maksimal 6 per halaman)
+function initCertificatesPagination() {
+  const grid = document.querySelector('.cert-grid');
+  const paginationWrap = document.getElementById('certPaginationWrap');
+  const paginationControls = document.getElementById('certPaginationControls');
+  const paginationInfo = document.getElementById('certPaginationInfo');
+
+  if (!grid || !paginationWrap) return;
+
+  const cards = Array.from(grid.querySelectorAll('.cert-card'));
+  const ITEMS_PER_PAGE = 6;
+  const totalCards = cards.length;
+  const totalPages = Math.ceil(totalCards / ITEMS_PER_PAGE);
+
+  // Jika kartu <= 6, sembunyikan pagination bar dan tampilkan semua
+  if (totalCards <= ITEMS_PER_PAGE) {
+    paginationWrap.style.display = 'none';
+    cards.forEach(card => {
+      card.style.display = 'flex';
+    });
+    return;
+  }
+
+  paginationWrap.style.display = 'flex';
+  let currentPage = 1;
+
+  function renderPage(page, scrollToTop = false) {
+    currentPage = page;
+    const startIndex = (page - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+
+    cards.forEach((card, index) => {
+      if (index >= startIndex && index < endIndex) {
+        card.style.display = 'flex';
+        card.classList.remove('cert-fade-in');
+        // Force reflow for CSS animation restart
+        void card.offsetWidth;
+        card.classList.add('cert-fade-in');
+        card.classList.add('visible'); // pastikan langsung tampak
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Info teks paginasi
+    const showingStart = startIndex + 1;
+    const showingEnd = Math.min(endIndex, totalCards);
+    if (paginationInfo) {
+      paginationInfo.textContent = `Menampilkan ${showingStart}–${showingEnd} dari total ${totalCards} sertifikat (Halaman ${currentPage} dari ${totalPages})`;
+    }
+
+    // Tombol-tombol kontrol paginasi
+    if (paginationControls) {
+      paginationControls.innerHTML = '';
+
+      // Tombol Prev
+      const prevBtn = document.createElement('button');
+      prevBtn.className = 'cert-page-btn cert-page-nav';
+      prevBtn.setAttribute('type', 'button');
+      prevBtn.setAttribute('aria-label', 'Halaman Sebelumnya');
+      prevBtn.innerHTML = '← Prev';
+      prevBtn.disabled = currentPage === 1;
+      prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) renderPage(currentPage - 1, true);
+      });
+      paginationControls.appendChild(prevBtn);
+
+      // Tombol Angka Halaman
+      for (let i = 1; i <= totalPages; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.className = `cert-page-btn ${i === currentPage ? 'active' : ''}`;
+        pageBtn.setAttribute('type', 'button');
+        pageBtn.setAttribute('aria-label', `Halaman ${i}`);
+        pageBtn.textContent = i;
+        pageBtn.addEventListener('click', () => {
+          if (i !== currentPage) renderPage(i, true);
+        });
+        paginationControls.appendChild(pageBtn);
+      }
+
+      // Tombol Next
+      const nextBtn = document.createElement('button');
+      nextBtn.className = 'cert-page-btn cert-page-nav';
+      nextBtn.setAttribute('type', 'button');
+      nextBtn.setAttribute('aria-label', 'Halaman Selanjutnya');
+      nextBtn.innerHTML = 'Next →';
+      nextBtn.disabled = currentPage === totalPages;
+      nextBtn.addEventListener('click', () => {
+        if (currentPage < totalPages) renderPage(currentPage + 1, true);
+      });
+      paginationControls.appendChild(nextBtn);
+    }
+
+    if (scrollToTop) {
+      const section = document.getElementById('certificates');
+      if (section) {
+        const yOffset = -70; // offset untuk navbar sticky
+        const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }
+  }
+
+  // Tampilkan halaman pertama
+  renderPage(1, false);
+}
+
 // Run initializers
 document.addEventListener('DOMContentLoaded', () => {
   initLightboxTriggers();
+  initCertificatesPagination();
 });
+
