@@ -78,7 +78,60 @@ const isWatch = process.argv.includes('--watch') || process.argv.includes('-w');
 build();
 
 if (isWatch) {
-  console.log('\nWatching for changes in src/ directory... (Press Ctrl+C to stop)\n');
+  const http = require('http');
+  const PORT = process.env.PORT || 3000;
+
+  const MIME_TYPES = {
+    '.html': 'text/html; charset=utf-8',
+    '.css': 'text/css; charset=utf-8',
+    '.js': 'application/javascript; charset=utf-8',
+    '.json': 'application/json',
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.svg': 'image/svg+xml',
+    '.ico': 'image/x-icon',
+    '.txt': 'text/plain; charset=utf-8'
+  };
+
+  const server = http.createServer((req, res) => {
+    // Parse URL path
+    const reqUrl = new URL(req.url, `http://${req.headers.host}`);
+    let pathname = decodeURIComponent(reqUrl.pathname);
+
+    // Single Page App routing: route /input or root to index.html
+    if (pathname === '/' || pathname === '/input' || pathname === '/input/') {
+      pathname = '/index.html';
+    }
+
+    let filePath = path.join(ROOT_DIR, pathname);
+
+    // Check if file exists, if not and has no extension, fallback to index.html (SPA)
+    if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
+      filePath = OUT_HTML;
+    }
+
+    const ext = path.extname(filePath).toLowerCase();
+    const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+
+    fs.readFile(filePath, (err, content) => {
+      if (err) {
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end(`Server Error: ${err.message}`);
+        return;
+      }
+      res.writeHead(200, { 'Content-Type': contentType });
+      res.end(content);
+    });
+  });
+
+  server.listen(PORT, () => {
+    console.log(`\n======================================================`);
+    console.log(`🚀 Local Server running at: http://localhost:${PORT}`);
+    console.log(`📝 Content Input Studio at: http://localhost:${PORT}/input`);
+    console.log(`👀 Watching for changes in src/ directory...`);
+    console.log(`======================================================\n`);
+  });
 
   let debounceTimer = null;
   fs.watch(SRC_DIR, { recursive: true }, (eventType, filename) => {
@@ -90,3 +143,4 @@ if (isWatch) {
     }, 100);
   });
 }
+
