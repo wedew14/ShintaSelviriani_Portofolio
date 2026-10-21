@@ -28,41 +28,6 @@ revealItems.forEach(el => {
 });
 
 // 3. Running Slide Gallery Controls & Marquee interaction
-const marqueeTrack = document.querySelector('.running-slide-track');
-const marqueeWrap = document.querySelector('.running-gallery-wrap');
-const pauseBtn = document.getElementById('toggleMarqueeBtn');
-const prevBtn = document.getElementById('prevSlideBtn');
-const nextBtn = document.getElementById('nextSlideBtn');
-
-let isPaused = false;
-
-if (pauseBtn && marqueeTrack) {
-  pauseBtn.addEventListener('click', () => {
-    isPaused = !isPaused;
-    if (isPaused) {
-      marqueeTrack.classList.add('paused');
-      pauseBtn.innerHTML = '▶ Putar Slide';
-      pauseBtn.classList.add('is-active');
-    } else {
-      marqueeTrack.classList.remove('paused');
-      pauseBtn.innerHTML = '⏸ Jeda Slide';
-      pauseBtn.classList.remove('is-active');
-    }
-  });
-}
-
-// Prev / Next manual scrolling buttons
-if (prevBtn && marqueeWrap) {
-  prevBtn.addEventListener('click', () => {
-    marqueeWrap.scrollBy({ left: -340, behavior: 'smooth' });
-  });
-}
-if (nextBtn && marqueeWrap) {
-  nextBtn.addEventListener('click', () => {
-    marqueeWrap.scrollBy({ left: 340, behavior: 'smooth' });
-  });
-}
-
 // 4. Lightbox Modal Preview
 const lightbox = document.getElementById('imageLightbox');
 const lightboxImg = document.getElementById('lightboxImg');
@@ -129,7 +94,7 @@ function initLightboxTriggers() {
       
       e.preventDefault();
       
-      const imgEl = card.querySelector('img');
+      const imgEl = e.target.closest('img') || card.querySelector('img');
       const img = card.getAttribute('data-img') || (imgEl ? imgEl.src : '');
       const tag = card.getAttribute('data-tag') || (card.querySelector('.slide-tag, .slide-category-pill, .exp-photo-badge, .cert-badge, .achieve-rank-pill') ? card.querySelector('.slide-tag, .slide-category-pill, .exp-photo-badge, .cert-badge, .achieve-rank-pill').textContent.trim() : '');
       const title = card.getAttribute('data-title') || (card.querySelector('.slide-title, .cert-title, .achieve-title, h3') ? card.querySelector('.slide-title, .cert-title, .achieve-title, h3').textContent.trim() : '');
@@ -293,6 +258,101 @@ function initCertificatesPagination() {
 
   // Tampilkan halaman pertama
   renderPage(1, false);
+}
+
+function initContentPagination(config) {
+  const section = document.getElementById(config.sectionId);
+  const paginationWrap = document.getElementById(config.wrapId);
+  const paginationInfo = document.getElementById(config.infoId);
+  const paginationControls = document.getElementById(config.controlsId);
+  const container = section?.querySelector(config.containerSelector);
+  if (!section || !paginationWrap || !container) return;
+
+  const items = Array.from(container.querySelectorAll(config.itemSelector));
+  const perPage = 6;
+  const groups = config.groupSelector
+    ? Array.from(section.querySelectorAll(config.groupSelector))
+    : [];
+  const groupPageSizes = groups.map(() => 4);
+  const totalPages = config.groupSelector
+    ? Math.max(...groups.map((group, index) => Math.ceil(group.querySelectorAll(config.itemSelector).length / groupPageSizes[index])), 1)
+    : Math.ceil(items.length / perPage);
+  if (totalPages <= 1 && !config.alwaysShow) {
+    paginationWrap.style.display = 'none';
+    items.forEach(item => { item.style.display = ''; });
+    return;
+  }
+
+  paginationWrap.style.display = 'flex';
+  let currentPage = 1;
+  const renderPage = (page, scrollToSection = false) => {
+    currentPage = page;
+    const start = (page - 1) * perPage;
+    let visibleCount = 0;
+    if (config.groupSelector) {
+      groups.forEach((group, groupIndex) => {
+        const groupPerPage = groupPageSizes[groupIndex];
+        const groupStart = (page - 1) * groupPerPage;
+        const groupItems = Array.from(group.querySelectorAll(config.itemSelector));
+        groupItems.forEach((item, index) => {
+          const isVisible = index >= groupStart && index < groupStart + groupPerPage;
+          item.style.display = isVisible ? '' : 'none';
+          if (isVisible) visibleCount++;
+        });
+        group.style.display = groupItems.some(item => item.style.display !== 'none') ? '' : 'none';
+      });
+    } else {
+      const end = Math.min(start + perPage, items.length);
+      items.forEach((item, index) => {
+        const isVisible = index >= start && index < end;
+        item.style.display = isVisible ? '' : 'none';
+        if (isVisible) visibleCount++;
+      });
+    }
+
+    paginationInfo.textContent = config.groupSelector
+      ? `Menampilkan ${visibleCount} dari total ${items.length} ${config.itemLabel} (Halaman ${page} dari ${totalPages})`
+      : `Menampilkan ${start + 1}–${Math.min(start + perPage, items.length)} dari total ${items.length} ${config.itemLabel} (Halaman ${page} dari ${totalPages})`;
+    paginationControls.innerHTML = '';
+    const addButton = (label, ariaLabel, disabled, targetPage, active = false) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = `cert-page-btn ${active ? 'active' : ''} ${ariaLabel.startsWith('Halaman ') && !active ? '' : 'cert-page-nav'}`;
+      button.setAttribute('aria-label', ariaLabel);
+      button.textContent = label;
+      button.disabled = disabled;
+      button.addEventListener('click', () => renderPage(targetPage, true));
+      paginationControls.appendChild(button);
+    };
+
+    addButton('← Prev', 'Halaman Sebelumnya', page === 1, Math.max(1, page - 1));
+    for (let number = 1; number <= totalPages; number++) {
+      addButton(String(number), `Halaman ${number}`, number === page, number, number === page);
+    }
+    addButton('Next →', 'Halaman Selanjutnya', page === totalPages, Math.min(totalPages, page + 1));
+
+    if (scrollToSection) {
+      const y = section.getBoundingClientRect().top + window.pageYOffset - 70;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
+  renderPage(1);
+}
+
+function initExperienceAndMomentsPagination() {
+  initContentPagination({
+    sectionId: 'experience', wrapId: 'experiencePaginationWrap',
+    infoId: 'experiencePaginationInfo', controlsId: 'experiencePaginationControls',
+    containerSelector: '.timeline', itemSelector: '.timeline-item',
+    groupSelector: '.timeline-group', itemLabel: 'experience', alwaysShow: true
+  });
+  initContentPagination({
+    sectionId: 'gallery', wrapId: 'momentsPaginationWrap',
+    infoId: 'momentsPaginationInfo', controlsId: 'momentsPaginationControls',
+    containerSelector: '.running-slide-track', itemSelector: '.slide-card',
+    itemLabel: 'moments'
+  });
 }
 
 // 7. Content Input Studio (Khusus route /input)
@@ -587,6 +647,38 @@ function initInputStudio() {
             showToast('✓ Sertifikat baru berhasil ditambahkan ke halaman!');
           }
         }
+      } else if (currentCategory === 'experience') {
+        const timeline = document.querySelector('.timeline');
+        if (timeline && codeOutput) {
+          const groupName = document.getElementById('expGroup')?.value || 'Professional Experience';
+          let group = [...timeline.querySelectorAll('.timeline-group')].find(item => item.querySelector('.timeline-title')?.textContent.trim() === groupName);
+          if (!group) {
+            group = document.createElement('div');
+            group.className = 'timeline-group';
+            group.innerHTML = `<div class="timeline-title">${groupName}</div>`;
+            timeline.appendChild(group);
+          }
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = codeOutput.textContent.trim();
+          if (tempDiv.firstElementChild) {
+            group.appendChild(tempDiv.firstElementChild);
+            initLightboxTriggers();
+            initExperienceAndMomentsPagination();
+            showToast('✓ Experience berhasil ditambahkan ke halaman!');
+          }
+        }
+      } else if (currentCategory === 'gallery') {
+        const track = document.querySelector('.running-slide-track');
+        if (track && codeOutput) {
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = codeOutput.textContent.trim();
+          if (tempDiv.firstElementChild) {
+            track.appendChild(tempDiv.firstElementChild);
+            initLightboxTriggers();
+            initExperienceAndMomentsPagination();
+            showToast('✓ Momen berhasil ditambahkan ke galeri!');
+          }
+        }
       } else {
         showToast('✓ Salin kode HTML untuk ditempel ke file section!');
       }
@@ -615,6 +707,7 @@ function initInputStudio() {
 document.addEventListener('DOMContentLoaded', () => {
   initLightboxTriggers();
   initCertificatesPagination();
+  initExperienceAndMomentsPagination();
   initInputStudio();
 });
 
