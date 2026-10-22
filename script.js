@@ -201,7 +201,7 @@ function initCertificatesPagination() {
     const showingStart = startIndex + 1;
     const showingEnd = Math.min(endIndex, totalCards);
     if (paginationInfo) {
-      paginationInfo.textContent = `Menampilkan ${showingStart}–${showingEnd} dari total ${totalCards} sertifikat (Halaman ${currentPage} dari ${totalPages})`;
+      paginationInfo.textContent = `Showing ${showingStart}–${showingEnd} of ${totalCards} certificates (Page ${currentPage} of ${totalPages})`;
     }
 
     // Tombol-tombol kontrol paginasi
@@ -212,7 +212,7 @@ function initCertificatesPagination() {
       const prevBtn = document.createElement('button');
       prevBtn.className = 'cert-page-btn cert-page-nav';
       prevBtn.setAttribute('type', 'button');
-      prevBtn.setAttribute('aria-label', 'Halaman Sebelumnya');
+      prevBtn.setAttribute('aria-label', 'Previous page');
       prevBtn.innerHTML = '← Prev';
       prevBtn.disabled = currentPage === 1;
       prevBtn.addEventListener('click', () => {
@@ -225,7 +225,7 @@ function initCertificatesPagination() {
         const pageBtn = document.createElement('button');
         pageBtn.className = `cert-page-btn ${i === currentPage ? 'active' : ''}`;
         pageBtn.setAttribute('type', 'button');
-        pageBtn.setAttribute('aria-label', `Halaman ${i}`);
+        pageBtn.setAttribute('aria-label', `Page ${i}`);
         pageBtn.textContent = i;
         pageBtn.addEventListener('click', () => {
           if (i !== currentPage) renderPage(i, true);
@@ -237,7 +237,7 @@ function initCertificatesPagination() {
       const nextBtn = document.createElement('button');
       nextBtn.className = 'cert-page-btn cert-page-nav';
       nextBtn.setAttribute('type', 'button');
-      nextBtn.setAttribute('aria-label', 'Halaman Selanjutnya');
+      nextBtn.setAttribute('aria-label', 'Next page');
       nextBtn.innerHTML = 'Next →';
       nextBtn.disabled = currentPage === totalPages;
       nextBtn.addEventListener('click', () => {
@@ -311,13 +311,13 @@ function initContentPagination(config) {
     }
 
     paginationInfo.textContent = config.groupSelector
-      ? `Menampilkan ${visibleCount} dari total ${items.length} ${config.itemLabel} (Halaman ${page} dari ${totalPages})`
-      : `Menampilkan ${start + 1}–${Math.min(start + perPage, items.length)} dari total ${items.length} ${config.itemLabel} (Halaman ${page} dari ${totalPages})`;
+      ? `Showing ${visibleCount} of ${items.length} ${config.itemLabel} (Page ${page} of ${totalPages})`
+      : `Showing ${start + 1}–${Math.min(start + perPage, items.length)} of ${items.length} ${config.itemLabel} (Page ${page} of ${totalPages})`;
     paginationControls.innerHTML = '';
     const addButton = (label, ariaLabel, disabled, targetPage, active = false) => {
       const button = document.createElement('button');
       button.type = 'button';
-      button.className = `cert-page-btn ${active ? 'active' : ''} ${ariaLabel.startsWith('Halaman ') && !active ? '' : 'cert-page-nav'}`;
+      button.className = `cert-page-btn ${active ? 'active' : ''} ${ariaLabel.startsWith('Page ') && !active ? '' : 'cert-page-nav'}`;
       button.setAttribute('aria-label', ariaLabel);
       button.textContent = label;
       button.disabled = disabled;
@@ -325,11 +325,11 @@ function initContentPagination(config) {
       paginationControls.appendChild(button);
     };
 
-    addButton('← Prev', 'Halaman Sebelumnya', page === 1, Math.max(1, page - 1));
+    addButton('← Prev', 'Previous page', page === 1, Math.max(1, page - 1));
     for (let number = 1; number <= totalPages; number++) {
-      addButton(String(number), `Halaman ${number}`, number === page, number, number === page);
+      addButton(String(number), `Page ${number}`, number === page, number, number === page);
     }
-    addButton('Next →', 'Halaman Selanjutnya', page === totalPages, Math.min(totalPages, page + 1));
+    addButton('Next →', 'Next page', page === totalPages, Math.min(totalPages, page + 1));
 
     if (scrollToSection) {
       const y = section.getBoundingClientRect().top + window.pageYOffset - 70;

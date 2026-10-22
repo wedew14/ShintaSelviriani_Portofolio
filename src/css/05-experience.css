@@ -10,7 +10,7 @@
 }
 
 .timeline-title {
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--green2);
@@ -30,7 +30,7 @@
 }
 
 .timeline-item .date {
-  font-size: 10px;
+  font-size: 12px;
   color: #65756d;
   font-weight: 600;
   text-transform: uppercase;
@@ -38,18 +38,18 @@
 }
 
 .timeline-item h3 {
-  font: 500 20px "Playfair Display", serif;
+  font: 500 22px "Playfair Display", serif;
   color: var(--green);
   margin-bottom: 2px;
 }
 
 .timeline-item b {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--green2);
 }
 
 .timeline-item p {
-  font-size: 12px;
+  font-size: 14px;
   color: #556860;
   margin-top: 8px;
   line-height: 1.6;
@@ -66,7 +66,7 @@
   align-items: flex-start;
   margin-top: 28px;
   color: #5f6e67;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .experience-note span,
@@ -75,7 +75,7 @@
   color: var(--gold);
 }
 
-/* EXPERIENCE SUPPORTING PHOTOS / FOTO PENDUKUNG */
+/* EXPERIENCE SUPPORTING PHOTOS */
 .exp-gallery {
   display: flex;
   flex-wrap: wrap;
@@ -121,7 +121,7 @@
   right: 0;
   background: linear-gradient(to top, rgba(16, 46, 39, .95), rgba(16, 46, 39, .4) 60%, transparent);
   color: #f4f0e8;
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 600;
   padding: 8px 6px 3px;
   text-align: center;

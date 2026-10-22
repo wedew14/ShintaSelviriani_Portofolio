@@ -1,5 +1,5 @@
 <!-- ================================================================= -->
-<!-- CONTENT INPUT STUDIO (HANYA MUNCUL DI ROUTE /input ATAU #/input) -->
+<!-- CONTENT INPUT STUDIO (ONLY SHOWN ON THE /input OR #/input ROUTE) -->
 <!-- ================================================================= -->
 <div id="inputStudioOverlay" class="input-studio-overlay" aria-hidden="true">
   <div class="input-studio-container">
@@ -9,21 +9,21 @@
         <span class="studio-badge">Admin Mode · /input</span>
         <h2>Content Input Studio</h2>
       </div>
-      <a href="./" id="studioCloseBtn" class="studio-close-btn" title="Kembali ke Portofolio">
-        <span>✕</span> Tutup / Kembali ke Web
+      <a href="./" id="studioCloseBtn" class="studio-close-btn" title="Return to Portfolio">
+        <span>✕</span> Close / Return to Website
       </a>
     </header>
 
     <!-- Category Tabs -->
     <nav class="studio-tabs" id="studioCategoryTabs">
       <button type="button" class="studio-tab-btn active" data-category="certificates">
-        📜 Sertifikat & Lisensi
+        📜 Certificates & Licenses
       </button>
       <button type="button" class="studio-tab-btn" data-category="experience">
-        💼 Pengalaman (Experience)
+        💼 Experience
       </button>
       <button type="button" class="studio-tab-btn" data-category="achievements">
-        🏆 Prestasi (Achievements)
+        🏆 Achievements
       </button>
       <button type="button" class="studio-tab-btn" data-category="gallery">
         📸 Moments
@@ -38,50 +38,50 @@
           <!-- Fieldset: Certificates -->
           <div id="fieldsCertificates" class="studio-form-grid">
             <div class="studio-field">
-              <label for="certBadge">Badge / Kategori Juara</label>
-              <input type="text" id="certBadge" value="1st Winner" placeholder="Contoh: 1st Winner, Published Author, Tax Volunteer">
+              <label for="certBadge">Badge / Award Category</label>
+              <input type="text" id="certBadge" value="1st Winner" placeholder="Example: 1st Winner, Published Author, Tax Volunteer">
             </div>
 
             <div class="studio-field">
-              <label for="certYear">Tahun</label>
-              <input type="text" id="certYear" value="2026" placeholder="Contoh: 2026, 2025">
+              <label for="certYear">Year</label>
+              <input type="text" id="certYear" value="2026" placeholder="Example: 2026, 2025">
             </div>
 
             <div class="studio-field studio-full-width">
-              <label for="certTitle">Judul Sertifikat</label>
-              <input type="text" id="certTitle" value="Juara 1 UNPAM Tax Competition" placeholder="Contoh: 1st Place Tax Creative Video">
+              <label for="certTitle">Certificate Title</label>
+              <input type="text" id="certTitle" value="1st Place, UNPAM Tax Competition" placeholder="Example: 1st Place Tax Creative Video">
             </div>
 
             <div class="studio-field">
-              <label for="certIssuer">Penyelenggara / Institusi</label>
-              <input type="text" id="certIssuer" value="Universitas Pamulang" placeholder="Contoh: Universitas Pamulang, DJP, Insight Conference">
+              <label for="certIssuer">Organizer / Institution</label>
+              <input type="text" id="certIssuer" value="Universitas Pamulang" placeholder="Example: Universitas Pamulang, DJP, Insight Conference">
             </div>
 
             <div class="studio-field">
-              <label for="certId">Nomor / ID Sertifikat</label>
-              <input type="text" id="certId" value="ID: UNPAM-TAX-2026" placeholder="Contoh: ID: UNPAM-TAX-2026">
+              <label for="certId">Certificate Number / ID</label>
+              <input type="text" id="certId" value="ID: UNPAM-TAX-2026" placeholder="Example: ID: UNPAM-TAX-2026">
             </div>
 
             <div class="studio-field studio-full-width">
-              <label for="certImg">File Gambar / URL Sertifikat</label>
-              <input type="text" id="certImg" value="images/certificates/unpam-tax-competition.jpeg" placeholder="Contoh: images/certificates/nama-file.jpeg atau URL https://...">
-              <small>Gunakan path lokal di folder images/certificates/ atau link gambar.</small>
+              <label for="certImg">Certificate Image File / URL</label>
+              <input type="text" id="certImg" value="images/certificates/unpam-tax-competition.jpeg" placeholder="Example: images/certificates/filename.jpeg or URL https://...">
+              <small>Use a local path in the images/certificates/ folder or an image URL.</small>
             </div>
 
             <div class="studio-field studio-full-width">
-              <label for="certDesc">Deskripsi Sertifikat</label>
-              <textarea id="certDesc" placeholder="Deskripsi singkat kompetensi atau pencapaian sertifikat...">Penghargaan Juara 1 kompetisi perpajakan nasional kategori video kreatif edukasi kepatuhan pajak generasi muda.</textarea>
+              <label for="certDesc">Certificate Description</label>
+              <textarea id="certDesc" placeholder="Brief description of the certificate or achievement...">First place in the national tax competition creative video category, creating tax compliance education for young people.</textarea>
             </div>
           </div>
 
           <!-- Fieldset: Experience -->
           <div id="fieldsExperience" class="studio-form-grid" style="display: none;">
             <div class="studio-field">
-              <label for="expPeriod">Periode Waktu</label>
-              <input type="text" id="expPeriod" placeholder="Contoh: Jul 2026 — Present">
+              <label for="expPeriod">Time Period</label>
+              <input type="text" id="expPeriod" placeholder="Example: Jul 2026 — Present">
             </div>
             <div class="studio-field">
-              <label for="expGroup">Kelompok Timeline</label>
+              <label for="expGroup">Timeline Group</label>
               <select id="expGroup">
                 <option value="Professional Experience">Professional Experience</option>
                 <option value="Organizational & Leadership">Organizational & Leadership</option>
@@ -89,78 +89,78 @@
               </select>
             </div>
             <div class="studio-field studio-full-width">
-              <label for="expCompany">Nama Perusahaan / Organisasi</label>
-              <input type="text" id="expCompany" placeholder="Contoh: TEAZZI, HIMA BINUS, KPP Pratama">
+              <label for="expCompany">Company / Organization Name</label>
+              <input type="text" id="expCompany" placeholder="Example: TEAZZI, HIMA BINUS, KPP Pratama">
             </div>
             <div class="studio-field studio-full-width">
-              <label for="expRole">Posisi / Jabatan</label>
-              <input type="text" id="expRole" placeholder="Contoh: Student Brand Manager, Tax Volunteer">
+              <label for="expRole">Position / Role</label>
+              <input type="text" id="expRole" placeholder="Example: Student Brand Manager, Tax Volunteer">
             </div>
             <div class="studio-field studio-full-width">
-              <label for="expDesc">Deskripsi Tanggung Jawab & Kontribusi</label>
-              <textarea id="expDesc" placeholder="Tanggung jawab, pencapaian, dan aktivitas selama bertugas..."></textarea>
+              <label for="expDesc">Responsibilities & Contributions</label>
+              <textarea id="expDesc" placeholder="Responsibilities, achievements, and activities..."></textarea>
             </div>
           </div>
 
           <!-- Fieldset: Achievements -->
           <div id="fieldsAchievements" class="studio-form-grid" style="display: none;">
             <div class="studio-field">
-              <label for="achieveRank">Badge Peringkat</label>
-              <input type="text" id="achieveRank" placeholder="Contoh: 🏆 1st Winner National">
+              <label for="achieveRank">Rank Badge</label>
+              <input type="text" id="achieveRank" placeholder="Example: 🏆 1st Winner National">
             </div>
             <div class="studio-field">
-              <label for="achieveYear">Tahun</label>
-              <input type="text" id="achieveYear" placeholder="Contoh: 2026">
+              <label for="achieveYear">Year</label>
+              <input type="text" id="achieveYear" placeholder="Example: 2026">
             </div>
             <div class="studio-field studio-full-width">
-              <label for="achieveTitle">Nama Prestasi / Penghargaan</label>
-              <input type="text" id="achieveTitle" placeholder="Contoh: 1st Place — UNPAM Tax Competition">
+              <label for="achieveTitle">Achievement / Award Title</label>
+              <input type="text" id="achieveTitle" placeholder="Example: 1st Place — UNPAM Tax Competition">
             </div>
             <div class="studio-field studio-full-width">
-              <label for="achieveOrganizer">Penyelenggara</label>
-              <input type="text" id="achieveOrganizer" placeholder="Contoh: Universitas Pamulang">
+              <label for="achieveOrganizer">Organizer</label>
+              <input type="text" id="achieveOrganizer" placeholder="Example: Universitas Pamulang">
             </div>
             <div class="studio-field studio-full-width">
-              <label for="achieveImg">URL / Path Foto Dokumentasi</label>
-              <input type="text" id="achieveImg" placeholder="Contoh: images/certificates/unpam-tax-competition.jpeg">
+              <label for="achieveImg">Photo URL / File Path</label>
+              <input type="text" id="achieveImg" placeholder="Example: images/certificates/unpam-tax-competition.jpeg">
             </div>
             <div class="studio-field studio-full-width">
-              <label for="achieveDesc">Rincian Prestasi</label>
-              <textarea id="achieveDesc" placeholder="Rincian kompetisi, topik materi, dan capaian..."></textarea>
+              <label for="achieveDesc">Achievement Details</label>
+              <textarea id="achieveDesc" placeholder="Competition details, topic, and results..."></textarea>
             </div>
           </div>
 
           <!-- Fieldset: Gallery -->
           <div id="fieldsGallery" class="studio-form-grid" style="display: none;">
             <div class="studio-field">
-              <label for="galTag">Tag Kategori</label>
-              <input type="text" id="galTag" placeholder="Contoh: TAX COMPETITION, BRAND ACTIVATION">
+              <label for="galTag">Category Tag</label>
+              <input type="text" id="galTag" placeholder="Example: TAX COMPETITION, BRAND ACTIVATION">
             </div>
             <div class="studio-field">
-              <label for="galBadge">Badge Status</label>
-              <input type="text" id="galBadge" placeholder="Contoh: 1st Place Winner">
+              <label for="galBadge">Status Badge</label>
+              <input type="text" id="galBadge" placeholder="Example: 1st Place Winner">
             </div>
             <div class="studio-field studio-full-width">
-              <label for="galTitle">Judul Momen / Kegiatan</label>
-              <input type="text" id="galTitle" placeholder="Contoh: UNPAM Tax Competition">
+              <label for="galTitle">Moment / Activity Title</label>
+              <input type="text" id="galTitle" placeholder="Example: UNPAM Tax Competition">
             </div>
             <div class="studio-field studio-full-width">
-              <label for="galImg">URL / Path Foto Momen</label>
-              <input type="text" id="galImg" placeholder="Contoh: images/certificates/unpam-tax-competition.jpeg">
+              <label for="galImg">Photo URL / File Path</label>
+              <input type="text" id="galImg" placeholder="Example: images/certificates/unpam-tax-competition.jpeg">
             </div>
             <div class="studio-field studio-full-width">
-              <label for="galDesc">Deskripsi Foto</label>
-              <textarea id="galDesc" placeholder="Deskripsi dokumentasi kegiatan..."></textarea>
+              <label for="galDesc">Photo Description</label>
+              <textarea id="galDesc" placeholder="Activity documentation description..."></textarea>
             </div>
           </div>
 
           <!-- Form Buttons -->
           <div class="studio-form-actions">
             <button type="button" id="studioCopyHtmlBtn" class="studio-btn-primary">
-              📋 Salin Kode HTML
+              📋 Copy HTML Code
             </button>
-            <button type="button" id="studioSaveLocalBtn" class="studio-btn-secondary" title="Simpan sementara di browser dan lihat live preview di web">
-              💾 Simpan & Tampilkan Live
+            <button type="button" id="studioSaveLocalBtn" class="studio-btn-secondary" title="Save temporarily in your browser and preview live on the website">
+              💾 Save & Preview Live
             </button>
             <button type="button" id="studioResetBtn" class="studio-btn-secondary">
               ↺ Reset Form
@@ -172,7 +172,7 @@
       <!-- Preview Column -->
       <div class="studio-preview-col">
         <div class="studio-preview-header">
-          <span>Pratinjau Kartu (Live Preview)</span>
+          <span>Card Preview (Live Preview)</span>
         </div>
 
         <!-- Container Kartu Realistis -->
@@ -182,11 +182,11 @@
 
         <!-- Generated HTML Output -->
         <div class="studio-preview-header">
-          <span>Kode HTML Siap Pakai</span>
+          <span>Ready-to-Use HTML Code</span>
         </div>
         <div class="studio-code-box">
-          <button type="button" class="studio-copy-code-btn" id="studioQuickCopyBtn">Salin Kode</button>
-          <pre><code id="studioCodeOutput"><!-- Kode HTML akan otomatis digenerate disini --></code></pre>
+          <button type="button" class="studio-copy-code-btn" id="studioQuickCopyBtn">Copy Code</button>
+          <pre><code id="studioCodeOutput"><!-- HTML code will be generated here automatically --></code></pre>
         </div>
       </div>
     </div>
@@ -194,4 +194,4 @@
 </div>
 
 <!-- Notification Toast -->
-<div id="studioToast" class="studio-toast">✓ Kode HTML berhasil disalin ke clipboard!</div>
+<div id="studioToast" class="studio-toast">✓ HTML code copied to clipboard!</div>
